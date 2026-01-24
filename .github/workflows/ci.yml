@@ -1,15 +1,18 @@
 name: CI
-
 on:
   push:
-    branches:
-      - main
-
+    branches: [ "main" ]
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v3
-      - name: Validate Helm
-        run: |
-          helm lint ./ 
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Build image
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/myapp:latest .
+      - name: Push image
+        run: docker push ghcr.io/${{ github.repository_owner }}/myapp:latest
