@@ -4,13 +4,12 @@ metadata:
   name: myapp
   namespace: myapp
   annotations:
-    kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: web
     traefik.ingress.kubernetes.io/router.strip-prefix: "/myapp"
 spec:
+  ingressClassName: traefik
   rules:
-    - host: ""
-      http:
+    - http:
         paths:
           - path: /myapp
             pathType: Prefix
