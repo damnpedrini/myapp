@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}
   annotations:
-    traefik.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/router.middlewares: myapp-myapp-strip@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
@@ -16,4 +16,5 @@ spec:
                 name: {{ .Release.Name }}-myapp
                 port:
                   number: 80
+
 
