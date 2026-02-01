@@ -6,10 +6,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.entrypoints: web
-    traefik.ingress.kubernetes.io/router.strip-prefix: "/myapp"
+    traefik.ingress.kubernetes.io/router.middlewares: myapp/myapp-strip@kubernetescrd
 spec:
   rules:
-    - host: "*"
+    - host: ""  # vazio para aceitar acesso direto pelo IP
       http:
         paths:
           - path: /myapp
