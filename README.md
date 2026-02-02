@@ -253,5 +253,5 @@ MIT License - See LICENSE file for details
 
 ## Author
 
-Pedro Pedrini
+Pedrini
 - GitHub: [@damnpedrini](https://github.com/damnpedrini)
